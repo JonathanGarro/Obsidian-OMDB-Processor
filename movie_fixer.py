@@ -6,6 +6,7 @@ import csv
 from pathlib import Path
 from dotenv import load_dotenv
 
+# load environment variables from .env file
 load_dotenv()
 
 
@@ -39,12 +40,13 @@ def calculate_rating_delta(rating, rotten_tomatoes):
         return None
 
     try:
-        # convert rating to percentage
-        my_rating_percent = float(rating) * 10
+        # convert rating to percentage (out of 100) - rating is 0-5 scale
+        my_rating_percent = float(rating) * 20
 
         # parse rotten tomatoes score (remove % and convert to int)
         rt_score = int(rotten_tomatoes.rstrip('%'))
 
+        # calculate delta
         delta = int(my_rating_percent - rt_score)
         return delta
     except (ValueError, AttributeError):
