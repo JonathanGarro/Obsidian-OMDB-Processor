@@ -6,6 +6,7 @@ import csv
 from pathlib import Path
 from dotenv import load_dotenv
 
+# load environment variables from .env file
 load_dotenv()
 
 
@@ -51,8 +52,8 @@ def calculate_rating_delta(rating, rotten_tomatoes):
         return None
 
     try:
-        # convert rating to percentage
-        my_rating_percent = float(rating) * 10
+        # convert rating to percentage (out of 100) - rating is 0-5 scale
+        my_rating_percent = float(rating) * 20
 
         # parse rotten tomatoes score (remove % and convert to int)
         rt_score = int(rotten_tomatoes.rstrip('%'))
@@ -161,7 +162,7 @@ def process_markdown_files(directory, api_key):
 # usage
 if __name__ == "__main__":
     API_KEY = os.getenv("OMDB_API_KEY")
-    DIRECTORY = os.getenv("MARKDOWN_DIRECTORY")
+    DIRECTORY = os.getenv("MARKDOWN_DIRECTORY", "./markdown_files")
 
     if not API_KEY:
         print("error: OMDB_API_KEY not found in environment variables")
