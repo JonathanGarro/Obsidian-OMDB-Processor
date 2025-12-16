@@ -78,8 +78,7 @@ def update_markdown_file(file_path, movie_data):
         imdb_id = movie_data.get('imdbID')
 
         frontmatter['imdb_id'] = imdb_id
-        frontmatter[
-            'imdb_link'] = f"[{movie_data.get('Title')} on IMDB](https://www.imdb.com/title/{imdb_id}/)" if imdb_id else None
+        frontmatter['imdb_link'] = f"https://www.imdb.com/title/{imdb_id}/" if imdb_id else None
         frontmatter['imdb_rating'] = movie_data.get('imdbRating')
         frontmatter['imdb_votes'] = movie_data.get('imdbVotes')
         frontmatter['metascore'] = movie_data.get('Metascore')
